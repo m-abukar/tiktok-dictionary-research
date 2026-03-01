@@ -1,81 +1,160 @@
-# TikTok Dictionary - Reddit Data Collection Research
+# TikTok Dictionary - Multi-Source Terminology Validation Research
 
 Academic research project for Computer Science dissertation at University of Warwick.
 
 ## Project Overview
 
-This repository contains the data collection component for researching emerging slang terminology popularized on TikTok. The system monitors Reddit discussions to identify and analyze new slang terms for linguistic research and educational purposes.
+This research develops a multi-source validation system for identifying emerging cultural terminology. The system combines Google Trends analysis (primary data source) with Reddit community validation to distinguish genuine cultural phenomena from temporary search anomalies.
 
-## Purpose
+## Research Question
 
-Analyzing how Gen Z slang evolves and spreads across social media platforms by:
-- Identifying trending terminology from Reddit discussions where users ask "what does X mean?"
-- Extracting linguistic context and usage patterns
-- Building a machine learning model to classify and predict potential slang terms
-- Creating a free educational resource documenting TikTok-specific terminology for public benefit
+How can cross-platform validation improve accuracy in detecting culturally significant emerging terminology compared to single-source approaches?
+
+## Methodology
+
+### Two-Layer Architecture
+
+**Layer 1: Discovery (Google Trends API)**
+- Primary data source for term discovery
+- Identifies search terms with significant upward trends
+- Provides quantitative metrics on search volume and velocity
+
+**Layer 2: Validation (Reddit API)**
+- Secondary validation layer confirming cultural significance
+- Uses simple algorithmic analysis
+- Validates whether trending searches reflect actual community usage
+- Distinguishes cultural terminology from news events
+
+### Reddit Validation Methodology
+
+Reddit data collection uses **algorithmic analysis only**:
+
+1. **Keyword Search**: Query subreddits for posts containing terms discovered via Google Trends
+2. **Frequency Counting**: Count mentions across relevant communities
+3. **Context Analysis**: Identify usage patterns (natural conversation vs. definitional questions)
+4. **Cross-Validation**: Check presence across multiple relevant subreddits
+
+**Important**: Reddit data is used for validation counting only.
 
 ## Reddit API Usage
 
-### Data Collection Scope
-- **Subreddits monitored**: r/TikTokCringe, r/OutOfTheLoop, r/GenZ, r/NoStupidQuestions, r/explainlikeimfive
-- **Data collected**: Post titles and text containing slang terminology questions
+### Scope
+- **Subreddits**: r/TikTokCringe, r/OutOfTheLoop, r/GenZ, r/NoStupidQuestions, r/explainlikeimfive
+- **Data collected**: Public post titles and text containing terminology
 - **Frequency**: 3 times per week (Monday/Wednesday/Friday mornings)
-- **Rate limit**: 40 requests per minute (within Reddit's 60/min allowance)
-- **Privacy**: No user data, comments, votes, or personal information collected
+- **Rate limit**: 40 requests per minute (within 60/min allowance)
+- **Annual volume**: ~260,000 requests (minimal compared to commercial usage)
 
 ### What We DON'T Do
-- No posting or commenting
-- No voting or user interaction  
-- No personal data collection
-- No real-time monitoring
+- No machine learning training on Reddit data
+- No collection of user data, comments, or voting information
+- No posting, commenting, or community interaction
+- No real-time monitoring or excessive requests
 - No storage of individual user information
+- No tracking of user behavior
 
 ### What We DO
-- Read public posts containing slang terminology questions
-- Extract aggregate statistics on term frequency
-- Cross-validate findings across multiple subreddits
-- Integrate with Google Trends for additional validation
+- Read public posts containing terminology identified by Google Trends
+- Count frequency of term mentions (simple algorithmic counting)
+- Identify context patterns using keyword matching
+- Cross-validate across multiple subreddits for significance
+- Aggregate statistics only (not individual post storage)
 
-## Research Methodology
+**Reddit's Role**: Provides validation context through algorithmic frequency analysis
 
-### 1. Term Extraction
-Identify posts matching patterns: "what does [X] mean?", "can someone explain [term]?"
+## Data Privacy & Ethics
 
-### 2. Frequency Analysis
-Track mention counts across subreddits to identify emerging terminology
+### Privacy Protection
+- Only public post content collected (no private/deleted content)
+- No user profiling, tracking, or demographic inference
+- Aggregated statistics only (individual posts not permanently stored)
+- Fully GDPR compliant (no personal data processing)
+- Compliant with Reddit's Responsible Builder Policy
 
-### 3. Machine Learning Classification
-Train model on existing slang terms to predict new ones
-
-### 4. Cross-Platform Validation
-Verify findings with Google Trends data
-
-## Technical Stack
-
-- **Language**: Python 3.10+
-- **Reddit API**: PRAW (Python Reddit API Wrapper)
-- **Machine Learning**: scikit-learn, NLTK
-- **Backend**: Django REST Framework
-- **Database**: PostgreSQL
-
-## Privacy & Ethics
-
-- Only public post data collected
-- No user profiling or tracking
-- Aggregated statistics only
-- Fully GDPR compliant
+### Transparency
 - Research methodology publicly documented
+- Code available for peer review and verification
+- Results published for public educational benefit
+- Academic oversight through University of Warwick
 
-## Academic Affiliation
+### Responsible Use
+- Rate limiting well within Reddit's guidelines (40/min vs 60/min limit)
+- Randomized request delays to minimize server impact
+- Respects robots.txt and API terms of service
+- No commercial use or monetization
+- Academic research purpose only
 
-- **Institution**: University of Warwick, Computer Science Department
-- **Project**: CS310 Individual Project (Dissertation)
+## Academic Context
+
+- **Institution**: University of Warwick, Department of Computer Science
+- **Project**: CS310 Individual Project (Undergraduate Dissertation)
 - **Academic Year**: 2025-2026
+- **Research Focus**: Multi-source validation methodologies for cultural terminology detection
+- **Supervisor**: [Add if applicable]
 
-## Main Application
+## Technical Architecture
 
-The full TikTok Dictionary platform (web application, complete ML pipeline, user interface) is maintained in a private repository for dissertation purposes.
+### Primary Stack
+- **Google Trends**: Primary data source 
+- **Reddit API**: Validation layer (algorithmic analysis only)
+- **Backend**: Django REST Framework (Python)
+- **Frontend**: React/Next.js (TypeScript)
+- **Database**: PostgreSQL
+- **Analysis**: Pandas, NumPy (for Google Trends data only)
+
+### Data Flow
+```
+Google Trends API
+    ↓
+Trending term detection
+    ↓
+Reddit API validation (algorithmic counting)
+    ↓
+Cross-validation decision
+    ↓
+Educational dictionary database
+```
+
+## Research Outputs
+
+### Academic Deliverables
+- Undergraduate dissertation (May 2026)
+- Methodology documentation
+- Validation accuracy analysis
+- Comparative effectiveness study
+
+### Public Deliverables
+- Free educational dictionary of cultural terminology
+- Open research methodology documentation
+- Academic findings published for community benefit
+
+## Deployment Timeline
+
+- **Research Phase**: February - March 2026 (Data collection and validation)
+- **Development**: March - April 2026 (System refinement)
+- **Public Launch**: April 2026 (Educational resource)
+- **Dissertation Submission**: May 2026
+
+## Ethical Compliance
+
+This research adheres to:
+- University of Warwick research ethics guidelines
+- GDPR data protection regulations
+- Reddit's Responsible Builder Policy
+- Academic integrity standards
+
+## Contact
+
+For academic inquiries, verification, or collaboration:
+- **GitHub**: [@m-abukar](https://github.com/m-abukar)
+- **Institution**: University of Warwick, Department of Computer Science
+
+## License
+
+This code is provided for academic research transparency and peer review purposes. The educational dictionary application is maintained separately for dissertation assessment.
+
+## Acknowledgments
+
+This research is conducted under academic supervision at University of Warwick and complies with all university research ethics requirements.
 
 ---
-
-*This repository contains only the Reddit data collection component for research transparency.*
